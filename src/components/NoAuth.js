@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { ROUTES } from "./Routes";
-import useAuth from "./hooks/useAuth";
+import { ROUTES } from "../app/Routes";
+import useAuth from "../hooks/useAuth";
 
 function NoAuth({ children }) {
     let { isAuth } = useAuth();

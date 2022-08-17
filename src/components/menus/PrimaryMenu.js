@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../app/Routes";
-import useAuth from "../../app/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 function PrimaryMenu() {
     const withoutLoggedInMenu = [

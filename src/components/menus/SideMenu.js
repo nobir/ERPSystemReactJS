@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import useAuth from "../../app/hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { ROUTES } from "../../app/Routes";
 
 function SideMenu() {

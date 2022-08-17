@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../app/Routes";
 import Axios from "../../app/AxiosConfig";
-import useAuth from "../../app/hooks/useAuth";
-import useErrorMessage from "../../app/hooks/useErrorMessage";
+import useAuth from "../../hooks/useAuth";
+import useErrorMessage from "../../hooks/useErrorMessage";
 
 function Logout() {
     const { setErrorMessage } = useErrorMessage();

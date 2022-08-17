@@ -1,9 +1,9 @@
 import { useState } from "react";
-import usePageTitle from "../app/hooks/usePageTitle";
+import usePageTitle from "../hooks/usePageTitle";
 import AxiosConfig from "../app/AxiosConfig";
-import useErrorMessage from "../app/hooks/useErrorMessage";
-import useSuccessMessage from "../app/hooks/useSuccessMessage";
-import useFormError from "../app/hooks/useFormError";
+import useErrorMessage from "../hooks/useErrorMessage";
+import useSuccessMessage from "../hooks/useSuccessMessage";
+import useFormError from "../hooks/useFormError";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../app/Routes";
 

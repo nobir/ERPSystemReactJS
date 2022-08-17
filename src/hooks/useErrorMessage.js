@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { GlobalStateContext } from "../../App";
+import { GlobalStateContext } from "../App";
 
 function useErrorMessage(initialState = "") {
     const { globalState, dispatchGlobalState } = useContext(GlobalStateContext);

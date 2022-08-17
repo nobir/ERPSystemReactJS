@@ -4,7 +4,7 @@ import Header from "./templates/Header";
 import Footer from "./templates/Footer";
 import Message from "./components/Message";
 import SideMenu from "./components/menus/SideMenu";
-import MainContent from "./app/MainContent";
+import MainContent from "./components/MainContent";
 
 const initialState = {
     pageTitle: "",

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import useErrorMessage from "../app/hooks/useErrorMessage";
-import usePageTitle from "../app/hooks/usePageTitle";
-import useSuccessMessage from "../app/hooks/useSuccessMessage";
+import useErrorMessage from "../hooks/useErrorMessage";
+import usePageTitle from "../hooks/usePageTitle";
+import useSuccessMessage from "../hooks/useSuccessMessage";
 
 function NotFound() {
     useErrorMessage();
