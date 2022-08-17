@@ -14,7 +14,7 @@ import ChangePassword from "../pages/dashboard/ChangePassword";
 import Logout from "../pages/dashboard/Logout";
 import { ROUTES } from "./Routes";
 
-function AppRoutes() {
+function MainContent() {
     const { isAuth, user } = useAuth();
     let routeList = null;
     let adminList = null;
@@ -112,4 +112,4 @@ function AppRoutes() {
     );
 }
 
-export default AppRoutes;
+export default MainContent;
