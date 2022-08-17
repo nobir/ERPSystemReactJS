@@ -3,8 +3,8 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./templates/Header";
 import Footer from "./templates/Footer";
 import Message from "./components/Message";
-import AppRoutes from "./app/AppRoutes";
 import SideMenu from "./components/menus/SideMenu";
+import MainContent from "./app/MainContent";
 
 const initialState = {
     pageTitle: "",
@@ -70,7 +70,7 @@ function App() {
                         <div
                             className={"col-12 col-md-" + (token ? "9" : "12")}
                         >
-                            <AppRoutes />
+                            <MainContent />
                         </div>
                     </div>
                 </main>
