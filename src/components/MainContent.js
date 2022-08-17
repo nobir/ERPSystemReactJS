@@ -5,14 +5,14 @@ import About from "../pages/About";
 import NotFound from "../pages/NotFound";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Auth from "./Auth";
-import NoAuth from "./NoAuth";
-import useAuth from "./hooks/useAuth";
+import NoAuth from "../components/NoAuth";
+import useAuth from "../hooks/useAuth";
 import ViewProfile from "../pages/dashboard/ViewProfile";
 import EditProfile from "../pages/dashboard/EditProfile";
 import ChangeProfilePic from "../pages/dashboard/ChangeProfilePic";
 import ChangePassword from "../pages/dashboard/ChangePassword";
 import Logout from "../pages/dashboard/Logout";
-import { ROUTES } from "./Routes";
+import { ROUTES } from "../app/Routes";
 
 function MainContent() {
     const { isAuth, user } = useAuth();
