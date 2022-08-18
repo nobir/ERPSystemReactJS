@@ -3,7 +3,7 @@ import usePageTitle from "../hooks/usePageTitle";
 import AxiosConfig from "../app/AxiosConfig";
 import useErrorMessage from "../hooks/useErrorMessage";
 import useSuccessMessage from "../hooks/useSuccessMessage";
-import useFormError from "../hooks/useFormError";
+import useFormValidationError from "../hooks/useFormValidationError";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../app/Routes";
 
@@ -13,7 +13,7 @@ function Login() {
     const { setErrorMessage } = useErrorMessage();
 
     const navigate = useNavigate();
-    const { formError, setFormError } = useFormError({});
+    const { formError, setFormError } = useFormValidationError({});
     const [loginForm, setLoginForm] = useState({
         email: "",
         password: "",
