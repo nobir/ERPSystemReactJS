@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useFormError(initialState = {}) {
+function useFormValidationError(initialState = {}) {
     const [_formError, _setFormError] = useState(initialState);
 
     const formError = _formError;
@@ -19,4 +19,4 @@ function useFormError(initialState = {}) {
     return { formError, setFormError };
 }
 
-export default useFormError;
+export default useFormValidationError;
