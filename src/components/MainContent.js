@@ -5,7 +5,7 @@ import About from "../pages/About";
 import NotFound from "../pages/NotFound";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Auth from "./Auth";
-import NoAuth from "../components/NoAuth";
+import NoAuth from "./NoAuth";
 import useAuth from "../hooks/useAuth";
 import ViewProfile from "../pages/dashboard/ViewProfile";
 import EditProfile from "../pages/dashboard/EditProfile";
