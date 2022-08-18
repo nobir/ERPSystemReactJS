@@ -38,7 +38,7 @@ function Logout() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return;
+    return <></>;
 }
 
 export default Logout;
