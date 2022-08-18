@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 
 function useFormValidationError(initialState = {}) {
-    const [_formError, _setFormError] = useState(initialState);
+    const [_formValidationError, _setFormValidationError] = useState(initialState);
 
-    const formError = _formError;
+    const formValidationError = _formValidationError;
 
-    function setFormError(errors = {}) {
-        _setFormError(errors);
+    function setFormValidationError(errors = {}) {
+        _setFormValidationError(errors);
     }
 
     useEffect(() => {
-        _setFormError({});
+        _setFormValidationError({});
         return () => {
-            _setFormError({});
+            _setFormValidationError({});
         };
     }, []);
 
-    return { formError, setFormError };
+    return { formValidationError, setFormValidationError };
 }
 
 export default useFormValidationError;
