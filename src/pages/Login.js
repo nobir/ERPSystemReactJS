@@ -1,11 +1,10 @@
-import { useState } from "react";
 import usePageTitle from "../hooks/usePageTitle";
 import AxiosConfig from "../app/AxiosConfig";
 import useErrorMessage from "../hooks/useErrorMessage";
 import useSuccessMessage from "../hooks/useSuccessMessage";
-import useFormValidationError from "../hooks/useFormValidationError";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../app/Routes";
+import useFormState from "../hooks/useFormState";
 
 function Login() {
     useSuccessMessage();
@@ -13,17 +12,12 @@ function Login() {
     const { setErrorMessage } = useErrorMessage();
 
     const navigate = useNavigate();
-    const { formError, setFormError } = useFormValidationError({});
-    const [loginForm, setLoginForm] = useState({
-        email: "",
-        password: "",
-    });
-
-
-    const handleLoginInputChange = (e) => {
-        e.preventDefault();
-        setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
-    };
+    const {
+        formState,
+        formValidationError,
+        setFormValidationError,
+        handleInputChange,
+    } = useFormState({ email: "", password: "" });
 
     const handleLoginFormSubmit = (e) => {
         e.preventDefault();
@@ -33,9 +27,9 @@ function Login() {
          * Needs to submit to the server by axios
          */
 
-        setFormError({});
+        setFormValidationError({});
 
-        AxiosConfig.post("/login", loginForm)
+        AxiosConfig.post("/login", formState)
             .then((response) => {
                 // console.log(JSON.stringify(response.data.user));
                 // return;
@@ -54,7 +48,7 @@ function Login() {
                 }
 
                 if (error.response.status === 422) {
-                    setFormError(error.response.data.error_list);
+                    setFormValidationError(error.response.data.error_list);
                 }
 
                 if (error.response.status === 406) {
@@ -82,16 +76,18 @@ function Login() {
                         name="email"
                         className={
                             "form-control" +
-                            (formError?.email?.length > 0 ? " is-invalid" : "")
+                            (formValidationError?.email?.length > 0
+                                ? " is-invalid"
+                                : "")
                         }
                         placeholder="sasuke@uchiha.com"
-                        value={loginForm.email}
-                        onChange={handleLoginInputChange}
+                        value={formState.email}
+                        onChange={handleInputChange}
                     />
 
-                    {formError?.email?.length > 0 ? (
+                    {formValidationError?.email?.length > 0 ? (
                         <span className="invalid-feedback" role="alert">
-                            <strong>{formError.email[0]}</strong>
+                            <strong>{formValidationError.email[0]}</strong>
                         </span>
                     ) : null}
                 </div>
@@ -107,17 +103,17 @@ function Login() {
                         name="password"
                         className={
                             "form-control" +
-                            (formError?.password?.length > 0
+                            (formValidationError?.password?.length > 0
                                 ? " is-invalid"
                                 : "")
                         }
-                        value={loginForm.password}
-                        onChange={handleLoginInputChange}
+                        value={formState.password}
+                        onChange={handleInputChange}
                     />
 
-                    {formError?.password?.length > 0 ? (
+                    {formValidationError?.password?.length > 0 ? (
                         <span className="invalid-feedback" role="alert">
-                            <strong>{formError.password[0]}</strong>
+                            <strong>{formValidationError.password[0]}</strong>
                         </span>
                     ) : null}
                 </div>
