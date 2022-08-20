@@ -14,7 +14,7 @@ function Logout() {
 
     useEffect(() => {
         console.log("logout");
-        Axios.post(ROUTES.logout, { id: user.id, token })
+        Axios.post(ROUTES.logout, { auth_id: user.id, token: token })
             .then((response) => {
                 // console.log(response);
                 if (response.status === 200) {
