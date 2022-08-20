@@ -1,6 +1,7 @@
 export const ROUTES = {
     //domain
-    baseURL: "http://127.0.0.1:8000/api",
+    baseUrl: "http://127.0.0.1:8000/",
+    baseApiUrl: "http://127.0.0.1:8000/api",
 
     // Commom to all
     home: "/",
