@@ -1,7 +1,8 @@
-import React from "react";
+import useAuth from "../../hooks/useAuth";
 
 function Dashboard() {
-    return <div>Dashboard</div>;
+    const { user } = useAuth();
+    return <h1>Welcome {user.name}</h1>;
 }
 
 export default Dashboard;
