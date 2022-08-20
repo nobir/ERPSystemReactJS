@@ -17,7 +17,7 @@ function ViewProfile() {
 
     useEffect(() => {
         setIsLoading(true);
-        Axios.post("/test", {
+        Axios.post("/dashboard/profile/", {
             auth_id: user.id,
             token: token,
         })
