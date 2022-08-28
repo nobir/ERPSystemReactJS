@@ -26,8 +26,12 @@ function SideMenu() {
             path: ROUTES.addPermission,
         },
         {
+            title: "Popular Category",
+            path: ROUTES.viewStatistic,
+        },
+        {
             title: "Send Email Verification Link",
-            path: ROUTES.sendVerificationLink,
+            path: ROUTES.sendEmailVerificationLink,
         },
     ];
 
