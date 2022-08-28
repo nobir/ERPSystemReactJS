@@ -13,7 +13,7 @@ function Logout() {
     // console.log(user.id, token);
 
     useEffect(() => {
-        console.log("logout");
+        // console.log("logout");
         Axios.post(ROUTES.logout, { auth_id: user.id, token: token })
             .then((response) => {
                 // console.log(response);
