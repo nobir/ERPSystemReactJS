@@ -1,4 +1,5 @@
 import axios from "axios";
+import useAuth from "../hooks/useAuth";
 import { ROUTES } from "./Routes";
 
 const Axios = axios.create({
@@ -8,7 +9,12 @@ const Axios = axios.create({
 Axios.interceptors.request.use(
     (config) => {
         // do something before send the request
-        // console.log("sending request");
+        const { user, token } = useAuth();
+
+        config.headers.authorized = token && token.length > 0 ? token : "";
+        config.headers.auth_id = user && user.id ? user.id : 0;
+
+        // console.log("Request: ", config);
         return config;
     },
     (error) => {
@@ -19,7 +25,8 @@ Axios.interceptors.request.use(
 Axios.interceptors.response.use(
     (response) => {
         // do something before revieve the response
-        // console.log("receiveing response");
+
+        // console.log("Response: ", response);
         return response;
     },
     (error) => {
