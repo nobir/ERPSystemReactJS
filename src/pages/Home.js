@@ -5,7 +5,7 @@ import useSuccessMessage from "../hooks/useSuccessMessage";
 function Home() {
     useErrorMessage();
     useSuccessMessage();
-    usePageTitle("About");
+    usePageTitle("Home");
 
     return (
         <p>
