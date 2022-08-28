@@ -47,11 +47,11 @@ function PrimaryMenu() {
 
     let menu = null;
 
-    const { user, token } = useAuth();
+    const { isAuth } = useAuth();
 
     // console.log(token);
 
-    if (user && token) {
+    if (isAuth) {
         menu = withLoggedInMenu.map((m, i) => (
             <li key={i} className="list-group m-1">
                 <Link
