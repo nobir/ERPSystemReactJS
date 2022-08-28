@@ -47,7 +47,7 @@ function Header() {
                         </div>
                     ) : null}
                 </div>
-                <div className="col-12 col-md-9 d-flex justify-content-center align-items-center">
+                <div className="col-12 col-md-9">
                     <PrimaryMenu />
                 </div>
             </div>
