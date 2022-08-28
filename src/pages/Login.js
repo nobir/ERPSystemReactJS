@@ -1,15 +1,17 @@
 import usePageTitle from "../hooks/usePageTitle";
-import AxiosConfig from "../app/AxiosConfig";
+import Axios from "../app/AxiosConfig";
 import useErrorMessage from "../hooks/useErrorMessage";
 import useSuccessMessage from "../hooks/useSuccessMessage";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../app/Routes";
 import useFormState from "../hooks/useFormState";
+import { useState } from "react";
+import Loading from "../components/Loading";
 
 function Login() {
     useSuccessMessage();
-    usePageTitle("Login");
     const { setErrorMessage } = useErrorMessage();
+    usePageTitle("Login");
 
     const navigate = useNavigate();
     const {
@@ -19,26 +21,25 @@ function Login() {
         handleInputChange,
     } = useFormState({ email: "", password: "" });
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleLoginFormSubmit = (e) => {
         e.preventDefault();
-        // console.dir(e.target.email.value, "Submit");
-
-        /**
-         * Needs to submit to the server by axios
-         */
 
         setFormValidationError({});
+        setErrorMessage();
 
-        AxiosConfig.post("/login", formState)
+        setIsLoading(true);
+
+        Axios.post(ROUTES.login, formState)
             .then((response) => {
-                // console.log(JSON.stringify(response.data.user));
-                // return;
                 localStorage.setItem(
                     "user",
                     JSON.stringify(response.data.user)
                 );
                 localStorage.setItem("token", response.data.token);
 
+                setIsLoading(false);
                 navigate(ROUTES.dashboard);
             })
             .catch((error) => {
@@ -54,10 +55,14 @@ function Login() {
                 if (error.response.status === 406) {
                     setErrorMessage(error.response.data.error_message);
                 }
+
+                setIsLoading(false);
             });
     };
 
-    return (
+    return isLoading ? (
+        <Loading />
+    ) : (
         <form
             id="login-form"
             action=""
