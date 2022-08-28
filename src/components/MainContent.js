@@ -12,7 +12,19 @@ import EditProfile from "../pages/dashboard/EditProfile";
 import ChangeProfilePic from "../pages/dashboard/ChangeProfilePic";
 import ChangePassword from "../pages/dashboard/ChangePassword";
 import Logout from "../pages/dashboard/Logout";
+import AddUser from "../pages/admin/AddUser";
+import VerifyUsers from "../pages/admin/VerifyUsers";
+import VerifyUserId from "../pages/admin/VerifyUserId";
+import ViewUsers from "../pages/admin/ViewUsers";
+import ViewPermissions from "../pages/admin/ViewPermissions";
+import AddPermission from "../pages/admin/AddPermission";
+import DeleteUser from "../pages/admin/DeleteUser";
+import DeletePermission from "../pages/admin/DeletePermission";
+import SendEmailVerificationLink from "../pages/admin/SendEmailVerificationLink";
 import { ROUTES } from "../app/Routes";
+import CategoryStatistic from "../pages/admin/CategoryStatistic";
+import EditPermission from "../pages/admin/EditPermission";
+import UnverifyUserId from "../pages/admin/UnverifyUserId";
 
 function MainContent() {
     const { isAuth, user } = useAuth();
@@ -80,12 +92,119 @@ function MainContent() {
 
         // Need to define all the routes
         if (isAuth && user.type <= 1) {
-            adminList = <></>;
+            adminList = (
+                <>
+                    <Route
+                        path={ROUTES.verifyUsers}
+                        element={
+                            <Auth>
+                                <VerifyUsers />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.viewUsers}
+                        element={
+                            <Auth>
+                                <ViewUsers />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.verifyUserId}
+                        element={
+                            <Auth>
+                                <VerifyUserId />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.unVerifyUserId}
+                        element={
+                            <Auth>
+                                <UnverifyUserId />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.deleteUser}
+                        element={
+                            <Auth>
+                                <DeleteUser />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.viewPermissions}
+                        element={
+                            <Auth>
+                                <ViewPermissions />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.addUser}
+                        element={
+                            <Auth>
+                                <AddUser />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.addPermission}
+                        element={
+                            <Auth>
+                                <AddPermission />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.editPermission}
+                        element={
+                            <Auth>
+                                <EditPermission />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.deleteUser}
+                        element={
+                            <Auth>
+                                <DeleteUser />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.deletePermission}
+                        element={
+                            <Auth>
+                                <DeletePermission />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.sendEmailVerificationLink}
+                        element={
+                            <Auth>
+                                <SendEmailVerificationLink />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.viewStatistic}
+                        element={
+                            <Auth>
+                                <CategoryStatistic />
+                            </Auth>
+                        }
+                    />
+                </>
+            );
         } else if (isAuth && user.type === 2) {
             managerList = <></>;
         } else if (isAuth && user.type === 3) {
             branchmanagerList = <></>;
-        } else if (isAuth && user.type === 3) {
+        } else if (isAuth && user.type === 4) {
             employeeList = <></>;
         }
     }
