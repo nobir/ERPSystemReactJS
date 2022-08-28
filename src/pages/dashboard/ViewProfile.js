@@ -1,4 +1,4 @@
-import useAuth from "../../hooks/useAuth";
+import Loading from "../../components/Loading";
 import { ROUTES } from "../../app/Routes";
 import React, { useEffect, useState } from "react";
 import Axios from "../../app/AxiosConfig";
@@ -7,33 +7,34 @@ import useSuccessMessage from "../../hooks/useSuccessMessage";
 import useErrorMessage from "../../hooks/useErrorMessage";
 
 function ViewProfile() {
-    useErrorMessage();
+    const { setErrorMessage } = useErrorMessage();
     useSuccessMessage();
     usePageTitle("View Profile");
 
-    const { user, token } = useAuth();
-    const [_user, _setUser] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+    const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        setIsLoading(true);
-        Axios.post("/dashboard/profile/", {
-            auth_id: user.id,
-            token: token,
-        })
+        Axios.post("/dashboard/profile/", {})
             .then((response) => {
-                _setUser(response.data);
+                setUser(response.data);
                 setIsLoading(false);
-                // console.log(_user);
             })
             .catch((error) => {
-                console.log(error.response);
+                // console.log(error.response);
+                if (error.response.status === 0) {
+                    setErrorMessage("Check your internet Connection");
+                }
+
+                if (error.response.status === 406) {
+                    setErrorMessage(error.response.data.error_message);
+                }
             });
         /* eslint-disable react-hooks/exhaustive-deps */
     }, []);
 
     return isLoading ? (
-        <h1 className="text-center">Loading ...</h1>
+        <Loading />
     ) : (
         <ul className="list-group list-group-flush">
             <li className="list-group-item d-block">
@@ -42,12 +43,12 @@ function ViewProfile() {
                     <div className="col-md-4 w-100">
                         <img
                             src={
-                                _user.avatar
-                                    ? `${ROUTES.baseUrl}images/${_user.avatar}`
+                                user.avatar
+                                    ? `${ROUTES.baseUrl}${user.avatar}`
                                     : `${ROUTES.baseUrl}images/default-user-avatar.png`
                             }
                             className="img-thumbnail rounded mx-auto d-block"
-                            alt={_user.name}
+                            alt={user.name}
                         />
                     </div>
                 </div>
@@ -58,7 +59,7 @@ function ViewProfile() {
                         <span className="text-dark">Name</span>
                     </div>
                     <div className="col-md-9">
-                        <span className="text-dark">{_user.name}</span>
+                        <span className="text-dark">{user.name}</span>
                     </div>
                 </div>
             </li>
@@ -68,7 +69,7 @@ function ViewProfile() {
                         <span className="text-dark">Username</span>
                     </div>
                     <div className="col-md-9">
-                        <span className="text-dark">{_user.username}</span>
+                        <span className="text-dark">{user.username}</span>
                     </div>
                 </div>
             </li>
@@ -78,7 +79,7 @@ function ViewProfile() {
                         <span className="text-dark">Email</span>
                     </div>
                     <div className="col-md-9">
-                        <span className="text-dark">{_user.email}</span>
+                        <span className="text-dark">{user.email}</span>
                     </div>
                 </div>
             </li>
@@ -88,7 +89,7 @@ function ViewProfile() {
                         <span className="text-dark">Salary</span>
                     </div>
                     <div className="col-md-9">
-                        <span className="text-dark">{"$" + _user.salary}</span>
+                        <span className="text-dark">{"$" + user.salary}</span>
                     </div>
                 </div>
             </li>
@@ -99,34 +100,34 @@ function ViewProfile() {
                     </div>
                     <div className="col-md-9">
                         <span className="text-dark">
-                            {_user.type === 0
+                            {user.type === 0
                                 ? "System Admin"
-                                : _user.type === 1
+                                : user.type === 1
                                 ? "CEO"
-                                : _user.type === 2
+                                : user.type === 2
                                 ? "Manager"
-                                : _user.type === 3
+                                : user.type === 3
                                 ? "Employee"
-                                : _user.type === 4
+                                : user.type === 4
                                 ? "Receptionist"
                                 : null}
                         </span>
                     </div>
                 </div>
             </li>
-            {_user.region || _user.branch ? (
+            {user.region || user.branch ? (
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-md-3">
                             <span className="text-dark">
-                                {_user.region ? "Region" : "Branch"}
+                                {user.region ? "Region" : "Branch"}
                             </span>
                         </div>
                         <div className="col-md-9">
                             <span className="text-dark">
-                                {_user.region
-                                    ? _user.region.name
-                                    : _user.branch.name}
+                                {user.region
+                                    ? user.region.name
+                                    : user.branch.name}
                             </span>
                         </div>
                     </div>
@@ -138,7 +139,7 @@ function ViewProfile() {
                         <span className="text-dark">Permissions</span>
                     </div>
                     <div className="col-md-9">
-                        {_user?.permissions?.map((permission, i) => (
+                        {user?.permissions?.map((permission, i) => (
                             <span key={i} className="text-dark">
                                 {permission.name}
                             </span>
@@ -146,7 +147,7 @@ function ViewProfile() {
                     </div>
                 </div>
             </li>
-            {_user?.address?.local_address ? (
+            {user?.address?.local_address ? (
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-md-3">
@@ -154,13 +155,13 @@ function ViewProfile() {
                         </div>
                         <div className="col-md-9">
                             <span className="text-dark">
-                                {_user.address.local_address}
+                                {user.address.local_address}
                             </span>
                         </div>
                     </div>
                 </li>
             ) : null}
-            {_user?.address?.police_station ? (
+            {user?.address?.police_station ? (
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-md-3">
@@ -168,13 +169,13 @@ function ViewProfile() {
                         </div>
                         <div className="col-md-9">
                             <span className="text-dark">
-                                {_user.address.police_station}
+                                {user.address.police_station}
                             </span>
                         </div>
                     </div>
                 </li>
             ) : null}
-            {_user?.address?.city ? (
+            {user?.address?.city ? (
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-md-3">
@@ -182,13 +183,13 @@ function ViewProfile() {
                         </div>
                         <div className="col-md-9">
                             <span className="text-dark">
-                                {_user.address.city}
+                                {user.address.city}
                             </span>
                         </div>
                     </div>
                 </li>
             ) : null}
-            {_user?.address?.country ? (
+            {user?.address?.country ? (
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-md-3">
@@ -196,13 +197,13 @@ function ViewProfile() {
                         </div>
                         <div className="col-md-9">
                             <span className="text-dark">
-                                {_user.address.country}
+                                {user.address.country}
                             </span>
                         </div>
                     </div>
                 </li>
             ) : null}
-            {_user?.address?.zip_code ? (
+            {user?.address?.zip_code ? (
                 <li className="list-group-item">
                     <div className="row">
                         <div className="col-md-3">
@@ -210,7 +211,7 @@ function ViewProfile() {
                         </div>
                         <div className="col-md-9">
                             <span className="text-dark">
-                                {_user.address.zip_code}
+                                {user.address.zip_code}
                             </span>
                         </div>
                     </div>
