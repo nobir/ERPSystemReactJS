@@ -20,12 +20,19 @@ export const ROUTES = {
     changePassword: "/dashboard/change-password",
 
     // Admin user
+    viewStatistic: "/admin/category-statistic",
     verifyUsers: "/admin/verify-users",
+    verifyUserId: "/admin/verify-user/:id", // Id
+    unVerifyUserId: "/admin/unverify-user/:id", // Id
     viewUsers: "/admin/view-users",
-    viewPermissions: "/admin/view-permissions",
     addUser: "/admin/add-user",
+    editUser: "/admin/edit-user/:id", // Id
+    deleteUser: "/admin/delete-user/:id", // Id
+    viewPermissions: "/admin/view-permissions",
     addPermission: "/admin/add-permission",
-    sendVerificationLink: "/admin/send-verification-link",
+    editPermission: "/admin/edit-permission/:id", // Id
+    deletePermission: "/admin/delete-permission/:id", // Id
+    sendEmailVerificationLink: "/admin/send-email-verification-link",
 
     // Manager user
     viewEmployee: "/manager/view-employees",
