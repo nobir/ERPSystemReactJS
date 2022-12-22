@@ -35,10 +35,13 @@ export const ROUTES = {
     sendEmailVerificationLink: "/admin/send-email-verification-link",
 
     // Manager user
-    viewEmployee: "/manager/view-employees",
+    viewEmployees: "/manager/view-employees",
     viewCategories: "/manager/view-categories",
     viewBranches: "/manager/view-branches",
     addEmployee: "/manager/add-employee",
     addCategory: "/manager/add-category",
     addBranch: "/manager/add-branch",
+    deleteEmployee: "/manager/delete-employee/:id",
+    deleteCategory: "/manager/delete-category/:id",
+    deleteBranch: "/manager/delete-branch/:id",
 };

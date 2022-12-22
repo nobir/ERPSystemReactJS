@@ -25,6 +25,15 @@ import { ROUTES } from "../app/Routes";
 import CategoryStatistic from "../pages/admin/CategoryStatistic";
 import EditPermission from "../pages/admin/EditPermission";
 import UnverifyUserId from "../pages/admin/UnverifyUserId";
+import ViewEmployees from "../pages/region/ViewEmployees";
+import ViewCategories from "../pages/region/ViewCategories";
+import ViewBranches from "../pages/region/ViewBranches";
+import AddEmployee from "../pages/region/AddEmployee";
+import AddCategory from "../pages/region/AddCategory";
+import AddBranch from "../pages/region/AddBranch";
+import DeleteEmployee from "../pages/region/DeleteEmployee";
+import DeleteCategory from "../pages/region/DeleteCategory";
+import DeleteBranch from "../pages/region/DeleteBranch";
 
 function MainContent() {
     const { isAuth, user } = useAuth();
@@ -201,7 +210,82 @@ function MainContent() {
                 </>
             );
         } else if (isAuth && user.type === 2) {
-            managerList = <></>;
+            managerList = (
+                <>
+                    <Route
+                        path={ROUTES.viewEmployees}
+                        element={
+                            <Auth>
+                                <ViewEmployees />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.viewCategories}
+                        element={
+                            <Auth>
+                                <ViewCategories />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.viewBranches}
+                        element={
+                            <Auth>
+                                <ViewBranches />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.addEmployee}
+                        element={
+                            <Auth>
+                                <AddEmployee />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.addCategory}
+                        element={
+                            <Auth>
+                                <AddCategory />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.addBranch}
+                        element={
+                            <Auth>
+                                <AddBranch />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.deleteEmployee}
+                        element={
+                            <Auth>
+                                <DeleteEmployee />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.deleteCategory}
+                        element={
+                            <Auth>
+                                <DeleteCategory />
+                            </Auth>
+                        }
+                    />
+                    <Route
+                        path={ROUTES.deleteBranch}
+                        element={
+                            <Auth>
+                                <DeleteBranch />
+                            </Auth>
+                        }
+                    />
+                </>
+            );
         } else if (isAuth && user.type === 3) {
             branchmanagerList = <></>;
         } else if (isAuth && user.type === 4) {

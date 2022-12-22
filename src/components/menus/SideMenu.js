@@ -38,7 +38,7 @@ function SideMenu() {
     const managerMenu = [
         {
             title: "View Employees",
-            path: ROUTES.viewEmployee,
+            path: ROUTES.viewEmployees,
         },
         {
             title: "View Categories",
